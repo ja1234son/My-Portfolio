@@ -26,6 +26,10 @@ COPY . .
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
+# ========== ADD THIS LINE ==========
+RUN mkdir -p storage bootstrap/cache
+# ===================================
+
 # Set permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
