@@ -26,9 +26,12 @@ COPY . .
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# ========== ADD THIS LINE ==========
-RUN mkdir -p storage bootstrap/cache
-# ===================================
+# ========== CREATE ALL STORAGE DIRECTORIES ==========
+RUN mkdir -p storage/framework/sessions
+RUN mkdir -p storage/framework/views
+RUN mkdir -p storage/framework/cache
+RUN mkdir -p bootstrap/cache
+# =====================================================
 
 # Set permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
