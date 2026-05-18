@@ -1,24 +1,36 @@
-FROM richarvey/nginx-php-fpm:latest
+FROM php:8.2-fpm
 
+# Install Nginx and dependencies
+RUN apt-get update && apt-get install -y \
+    nginx \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy application files
 COPY . .
 
-ENV SKIP_COMPOSER 0
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-ENV APP_ENV production
-ENV APP_DEBUG false
-ENV LOG_CHANNEL stderr
+# Set permissions
+RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chmod -R 775 storage bootstrap/cache
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-
-# Fix PHP-FPM socket path
-RUN mkdir -p /var/run && chmod 755 /var/run
-
-# Configure Nginx to use correct PHP-FPM socket
-RUN rm -f /etc/nginx/sites-enabled/default
+# Configure Nginx
 RUN echo 'server { \
     listen 80; \
     server_name _; \
@@ -33,5 +45,11 @@ RUN echo 'server { \
         include fastcgi_params; \
     } \
 }' > /etc/nginx/sites-enabled/default
+
+# Copy custom start script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+EXPOSE 80
 
 CMD ["/start.sh"]

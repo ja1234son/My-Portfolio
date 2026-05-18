@@ -1,45 +1,55 @@
-#!/usr/bin/env bash
+FROM php:8.2-fpm
 
-echo "=== Starting deployment ==="
+# Install Nginx and dependencies
+RUN apt-get update && apt-get install -y \
+    nginx \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
 
-# Fix: Make sure we're in the right directory
-cd /var/www/html
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-echo "Current directory: $(pwd)"
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install composer dependencies
-echo "=== Installing Composer dependencies ==="
-composer install --no-dev --optimize-autoloader --no-interaction
+# Set working directory
+WORKDIR /var/www/html
 
-# Check if vendor folder exists
-if [ -d "vendor" ]; then
-    echo "✅ vendor folder exists"
-else
-    echo "❌ vendor folder missing - composer install failed"
-    exit 1
-fi
+# Copy application files
+COPY . .
 
-# Create storage and bootstrap cache folders if missing
-echo "=== Setting up folders ==="
-mkdir -p storage/framework/sessions
-mkdir -p storage/framework/views
-mkdir -p storage/framework/cache
-mkdir -p bootstrap/cache
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Set permissions
-echo "=== Setting permissions ==="
-chown -R www-data:www-data storage bootstrap/cache
-chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chmod -R 775 storage bootstrap/cache
 
-# Laravel optimizations
-echo "=== Caching configuration ==="
-php artisan config:cache --no-interaction || true
-php artisan route:cache --no-interaction || true
-php artisan view:cache --no-interaction || true
+# Configure Nginx
+RUN echo 'server { \
+    listen 80; \
+    server_name _; \
+    root /var/www/html/public; \
+    index index.php; \
+    location / { \
+        try_files $uri $uri/ /index.php?$query_string; \
+    } \
+    location ~ \.php$ { \
+        fastcgi_pass 127.0.0.1:9000; \
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; \
+        include fastcgi_params; \
+    } \
+}' > /etc/nginx/sites-enabled/default
 
-echo "=== Starting PHP-FPM and Nginx ==="
-# Start PHP-FPM
-service php8.2-fpm start
+# Copy custom start script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-# Start Nginx in foreground
-nginx -g "daemon off;"
+EXPOSE 80
+
+CMD ["/start.sh"]
