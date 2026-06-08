@@ -607,6 +607,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="col-md-3">
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards" style="background-image: url(images/webs/8.png);">
 						<div class="overlay"></div>
@@ -616,6 +617,17 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="col-md-3">
+					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards"  style="background-image: url(images/webs/9.png);">
+						<div class="overlay"></div>
+						<div class="text text-center p-4">
+							<h3><a href="https://mountroyalsafaris.com/" style="font-family: 'Amethysta',serif;">Mount Royal Safaris</a></h3>
+							<span style="font-family: 'Amethysta',serif; color: #fff">Web Design</span>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</section>
