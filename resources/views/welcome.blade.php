@@ -602,7 +602,7 @@
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards"  style="background-image: url(images/webs/7.png);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
-							<h3><a href="https://goodafricasafaris.com/" style="font-family: 'Amethysta',serif;">Good Africa Safaris</a></h3>
+							<h3><a target="_blank" rel="noopener noreferrer" href="https://goodafricasafaris.com/" style="font-family: 'Amethysta',serif;">Good Africa Safaris</a></h3>
 							<span style="font-family: 'Amethysta',serif; color: #fff">Web Development</span>
 						</div>
 					</div>
@@ -612,7 +612,7 @@
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards" style="background-image: url(images/webs/8.png);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
-							<h3><a href="https://www.swahilisoftware.com/" style="font-family: 'Amethysta',serif;">Swahili Software</a></h3>
+							<h3><a target="_blank" rel="noopener noreferrer" href="https://www.swahilisoftware.com/" style="font-family: 'Amethysta',serif;">Swahili Software</a></h3>
 							<span style="font-family: 'Amethysta',serif; color: #fff;">Web Development</span>
 						</div>
 					</div>
@@ -622,7 +622,7 @@
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards"  style="background-image: url(images/webs/9.png);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
-							<h3><a href="https://mountroyalsafaris.com/" style="font-family: 'Amethysta',serif;">Mount Royal Safaris</a></h3>
+							<h3><a target="_blank" rel="noopener noreferrer" href="https://mountroyalsafaris.com/" style="font-family: 'Amethysta',serif;">Mount Royal Safaris</a></h3>
 							<span style="font-family: 'Amethysta',serif; color: #fff">Web Design</span>
 						</div>
 					</div>
