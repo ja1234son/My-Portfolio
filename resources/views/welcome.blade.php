@@ -562,7 +562,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				{{-- <div class="col-md-3">
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards" style="background-image: url(images/webs/3.png);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
@@ -570,7 +570,7 @@
 							<span style="font-family: 'Amethysta',serif;color: #fff">Web Development</span>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<div class="col-md-3">
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards" style="background-image: url(images/webs/4.png);">
 						<div class="overlay"></div>
