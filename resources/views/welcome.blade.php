@@ -562,15 +562,15 @@
 						</div>
 					</div>
 				</div>
-				{{-- <div class="col-md-3">
-					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards" style="background-image: url(images/webs/3.png);">
+				<div class="col-md-3">
+					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards" style="background-image: url(images/webs/19.png);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
-							<h3><a target="_blank" rel="noopener noreferrer" href="https://www.safaritoremember.com/" style="font-family: 'Amethysta',serif;">Safari To Remember</a></h3>
-							<span style="font-family: 'Amethysta',serif;color: #fff">Web Development</span>
+							<h3><a target="_blank" rel="noopener noreferrer" href="https://orlandocottages.co.tz/" style="font-family: 'Amethysta',serif;">Orlando Cottages</a></h3>
+							<span style="font-family: 'Amethysta',serif;color: #fff">Web Design</span>
 						</div>
 					</div>
-				</div> --}}
+				</div>
 				<div class="col-md-3">
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center projects-cards" style="background-image: url(images/webs/4.png);">
 						<div class="overlay"></div>
